@@ -12,11 +12,9 @@ app.use(express.json())
 app.use(cors())
 
 // MONGOOSE
-mongoose.connect("mongodb+srv://zacharymathias:Wilson-27@cluster0.igegl4n.mongodb.net/?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true } )
-
-.then(() => console.log('Connected Successfully'))
-
-.catch((err) => { console.error(err); });
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('DB connected'))
+    .catch(err => console.error(err));
 
 // ROOT INDEX 
 app.get('/', (req, res) => {
